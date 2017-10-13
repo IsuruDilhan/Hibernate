@@ -48,6 +48,8 @@ Contributor(s):
     <property name="hibernate.connection.username">app</property>
     <property name="hibernate.connection.password">app</property>
     <mapping class="com.entity.Role"></mapping>
+    <mapping class="com.entity.Task"></mapping>
+    <mapping class="com.entity.Employee"></mapping>
     <mapping resource="com/hibeutil/Members.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

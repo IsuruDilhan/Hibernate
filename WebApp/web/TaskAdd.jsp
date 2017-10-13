@@ -1,5 +1,5 @@
 <%-- 
-    Document   : RoleAdd
+    Document   : TaskAdd
     Created on : Oct 12, 2017, 7:47:11 AM
     Author     : VSARAIS
 --%>
@@ -38,7 +38,7 @@
                 return true;
             }
         </script>
-        <title>Role</title>
+        <title>Task</title>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -73,18 +73,18 @@
             </div>
             <div class="col-sm-8 text-left"> 
                 <div id="add" class="col-lg-6">
-                    <h4> Add Role </h4>
-                    <form action="RoleController" method="GET">
+                    <h4> Add Task </h4>
+                    <form action="TaskController" method="GET">
                         <table class="table">
                             <tr>
-                                <td> Role Name</td>
-                                <td><input type="text" name="title" id="title"></td>
+                                <td> Task Description</td>
+                                <td><input type="text" name="description" id="description"></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" name="addRole" value="Add" class="btn btn-primary" onsubmit="required()"></td>
+                                <td><input type="submit" name="addTask" value="Add" class="btn btn-primary" onsubmit="required()"></td>
                                 <td>
-                                    <a class="btn btn-info" href="ShowAllRoles.jsp"> 
-                                        Show All Roles
+                                    <a class="btn btn-info" href="ShowAllTasks.jsp"> 
+                                        Show All Tasks
                                     </a>
                                 </td>
                             </tr>
