@@ -8,6 +8,14 @@
         <servlet-name>RoleController</servlet-name>
         <url-pattern>/RoleController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TaskController</servlet-name>
+        <servlet-class>com.controller.TaskController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TaskController</servlet-name>
+        <url-pattern>/TaskController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

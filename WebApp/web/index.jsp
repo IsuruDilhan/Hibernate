@@ -37,7 +37,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/WebApp">Home</a></li>
                         <li><a href="#">Employees</a></li>
-                        <li><a href="#">Tasks</a></li>
+                        <li><a href="ShowAllTasks.jsp">Tasks</a></li>
                         <li><a href="ShowAllRoles.jsp">Roles</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

@@ -5,17 +5,17 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.entity.Role"%>
+<%@page import="com.entity.Task"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="com.controller.RoleController"%>
+<%@page import="com.controller.TaskController"%>
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Roles</title>
+        <title>Tasks</title>
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -24,13 +24,13 @@
                 $("#updateDiv").hide();
             });
 
-            function showDiv(id, title) {
+            function showDiv(id, description) {
                 $("#updateDiv").hide();
                 $("#updateDiv").fadeIn("slow", function () {
                 });
 
                 $("#id").val(id);
-                $("#titleupdate").val(title);
+                $("#descriptionupdate").val(description);
             }
 
         </script>
@@ -84,36 +84,40 @@
             <div class="col-sm-8 text-left">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <h4>All Roles</h4> <br> 
-                <a class="btn btn-sm btn-info" href="RoleAdd.jsp"> 
-                <i class="fa fa-plus" aria-hidden="true"> Add New Role</i>
+                    <h4>All Tasks</h4> <br> 
+                <a class="btn btn-sm btn-info" href="TaskAdd.jsp"> 
+                <i class="fa fa-plus" aria-hidden="true"> Add New Task</i>
                 </a><br><br>
-                
+              
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
+                            <th>Task Description</th>
+                            <th>Employee</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <%
-                            List persons = RoleController.showAllRoles();
-                            for (Iterator iter = persons.iterator(); iter.hasNext();) {
+                            List tasks = TaskController.showAllTasks();
+                            for (Iterator iter = tasks.iterator(); iter.hasNext();) {
 
-                                Role element = (Role) iter.next();
+                                Task element = (Task) iter.next();
                         %>
 
                         <tr>
                             <td>
-                                <% out.println(element.getId()); %>
+                                <% out.println(element.getTaskID()); %>
                             </td>
                             <td>
-                                <% out.println(element.getTitle()); %>
+                                <% out.println(element.getDescription()); %>
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getId()); %>, '<% out.print(element.getTitle()); %>')">
+                                <% out.println(element.getEmployee().getName()); %>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getTaskID()); %>, '<% out.print(element.getDescription()); %>')">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
                                 </button>
                             </td>
@@ -126,7 +130,7 @@
                         
                 <div class="row col-lg-6" id="updateDiv">
                     <h4>Edit Details</h4>
-                    <form action="RoleController" method="POST">
+                    <form action="TaskController" method="POST">
  
                         <table class="table col-lg-6">
                             <tbody>
@@ -136,13 +140,13 @@
                             </tr>
                             
                             <tr>
-                            <td><label>Update Title</label></td>
-                            <td><input id="titleupdate" type="text" name="titleupdate"></td>
+                            <td><label>Update Description</label></td>
+                            <td><input id="descriptionupdate" type="text" name="descriptionupdate"></td>
                             </tr>
                             </tbody>
                         </table>
                         
-                        <button type="submit" id="updateRole" name="updateRole" class="btn btn-sm btn-warning"> Update</button> <br> <br>
+                        <button type="submit" id="updateTask" name="updateTask" class="btn btn-sm btn-warning"> Update</button> <br> <br>
 
                     </form>
                 </div>
