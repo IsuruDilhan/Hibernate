@@ -67,18 +67,17 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-                
-                
-                
+        
             </div>
             <div class="col-sm-8 text-left"> 
+                <div class="col-sm-2"></div>
                 <div id="add" class="col-lg-6">
                     <h4> Add Role </h4>
                     <form action="RoleController" method="GET">
                         <table class="table">
                             <tr>
                                 <td> Role Name</td>
-                                <td><input type="text" name="title" id="title"></td>
+                                <td><input type="text" name="title" id="title" class="form-control form-group"></td>
                             </tr>
                             <tr>
                                 <td><input type="submit" name="addRole" value="Add" class="btn btn-primary" onsubmit="required()"></td>

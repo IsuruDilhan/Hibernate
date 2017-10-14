@@ -99,7 +99,7 @@
                                 <th>Name</th>
                                 <th>Role</th>
                                 <th>Tasks</th>
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -126,15 +126,16 @@
 
                                 </td>
                                 <td>
-                                    <% if (element.getTasksSet() == null) { %> 
-                                    <% out.println(element.getTasksSet()); %>
+                                    <% if (element.getTasksSet().isEmpty()) { %> 
+                                    - No Any Assigned Tasks -
+                                   
                                     <% } else { %>
                                     <% for (Task s : element.getTasksSet()) { %>
                         <li><% out.println(s.getDescription());%></li>
                             <%}%>
                             <% } %>
                         </td>
-                        <td>
+                        <td class="text-center">
                             <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getEmployeeID()); %>,
                                             '<% out.print(element.getName()); %>')">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
@@ -155,18 +156,18 @@
                                 <tbody>
                                     <tr>
                                         <td><label>ID</label></td>
-                                        <td><input name="id" id="id" type="text" readonly=""></td>
+                                        <td><input name="id" id="id" type="text" readonly="" class="form-control form-group"></td>
                                     </tr>
 
                                     <tr>
                                         <td><label>Update Name</label></td>
-                                        <td><input id="nameupdate" type="text" name="nameupdate"></td>
+                                        <td><input id="nameupdate" type="text" name="nameupdate" class="form-control form-group"></td>
                                     </tr>
 
                                     <tr>
                                         <td><label>Update Role</label></td>
                                         <td>
-                                            <select name="roleid">
+                                            <select name="roleid" class="form-control form-group">
                                                 <%
                                                     List role = RoleController.showAllRoles();
                                                     for (Iterator iter = role.iterator(); iter.hasNext();) {

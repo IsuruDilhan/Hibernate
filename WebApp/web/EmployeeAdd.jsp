@@ -71,23 +71,22 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-                
-                
-                
+
             </div>
-            <div class="col-sm-8 text-left"> 
+            <div class="col-sm-8 text-left">
+                <div class="col-sm-2"></div>
                 <div id="add" class="col-lg-6">
-                    <h4> Add Employee </h4>
+                    <h4> Add Employee </h4> <br>
                     <form action="EmployeeController" method="GET">
                         <table class="table">
                             <tr>
                                 <td> Employee Name</td>
-                                <td><input type="text" name="name" id="name"></td>
+                                <td><input type="text" name="name" id="name" class="form-control form-group"></td>
                             </tr>
                             <tr>
                                 <td> Employee Role</td>
                                 <td>
-                                    <select name="roleid">
+                                    <select name="roleid" class="form-control form-group">
                                         <%
                                             List role = RoleController.showAllRoles();
                                             for (Iterator iter = role.iterator(); iter.hasNext();) {

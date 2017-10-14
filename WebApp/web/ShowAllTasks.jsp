@@ -96,8 +96,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Task Description</th>
-                                <th>Employee</th>
-                                <th>Action</th>
+                                <th class="text-center">Employee</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,15 +115,15 @@
                                 <td>
                                     <% out.println(element.getDescription()); %>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <% if (element.getEmployee() == null) { %> 
-                                    <% out.println(element.getEmployee()); %>
+                                    - Task is Unassigned -
 
                                     <% } else { %>
                                     <% out.println(element.getEmployee().getName()); %>
                                     <% } %>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getTaskID()); %>, '<% out.print(element.getDescription()); %>')">
                                         <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
                                     </button>
@@ -143,18 +143,19 @@
                                 <tbody>
                                     <tr>
                                         <td><label>ID</label></td>
-                                        <td><input name="id" id="id" type="text" readonly=""></td>
+                                        <td><input name="id" id="id" type="text" readonly="" class="form-control form-group"></td>
                                     </tr>
 
                                     <tr>
                                         <td><label>Update Description</label></td>
-                                        <td><input id="descriptionupdate" type="text" name="descriptionupdate"></td>
+                                        <td><input id="descriptionupdate" type="text" name="descriptionupdate" 
+                                                   class="form-control form-group"></td>
                                     </tr>
 
                                     <tr>
                                         <td><label>Assign Employee</label></td>
                                         <td>
-                                            <select name="empid">
+                                            <select name="empid" class="form-control form-group">
                                                 <%
                                                     List emp = EmployeeController.showAllEmployees();
                                                     for (Iterator iter = emp.iterator(); iter.hasNext();) {

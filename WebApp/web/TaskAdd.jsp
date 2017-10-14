@@ -72,16 +72,17 @@
                 
             </div>
             <div class="col-sm-8 text-left"> 
+                <div class="col-sm-2"></div>
                 <div id="add" class="col-lg-6">
                     <h4> Add Task </h4>
                     <form action="TaskController" method="GET">
                         <table class="table">
                             <tr>
                                 <td> Task Description</td>
-                                <td><input type="text" name="description" id="description"></td>
+                                <td><input type="text" name="description" id="description" class="form-control form-group"></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" name="addTask" value="Add" class="btn btn-primary" onsubmit="required()"></td>
+                                <td><input type="submit" name="addTask" value="Add" class="btn btn-primary" onsubmit="required()" ></td>
                                 <td>
                                     <a class="btn btn-info" href="ShowAllTasks.jsp"> 
                                         Show All Tasks

@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -61,7 +62,7 @@ public class Employee implements Serializable {
         this.role = role;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "employee")
+    @OneToMany(fetch = FetchType.LAZY, targetEntity = Task.class ,mappedBy = "employee")
     public Set<Task> getTasksSet() {
         return tasksSet;
     }

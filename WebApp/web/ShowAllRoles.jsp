@@ -93,8 +93,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Action</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,10 +109,10 @@
                             <td>
                                 <% out.println(element.getId()); %>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <% out.println(element.getTitle()); %>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getId()); %>, '<% out.print(element.getTitle()); %>')">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
                                 </button>
@@ -132,12 +132,12 @@
                             <tbody>
                             <tr>
                             <td><label>ID</label></td>
-                            <td><input name="id" id="id" type="text" readonly=""></td>
+                            <td><input name="id" id="id" type="text" readonly="" class="form-control form-group"></td>
                             </tr>
                             
                             <tr>
                             <td><label>Update Title</label></td>
-                            <td><input id="titleupdate" type="text" name="titleupdate"></td>
+                            <td><input id="titleupdate" type="text" name="titleupdate" class="form-control form-group"></td>
                             </tr>
                             </tbody>
                         </table>
