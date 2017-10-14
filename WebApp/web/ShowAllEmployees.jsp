@@ -20,8 +20,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Employees</title>
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="assets/js/jquery-1.10.2.js"></script>
         <script>
             $(document).ready(function () {
                 $("#updateDiv").hide();
@@ -47,10 +47,7 @@
             .containers{
                 height: 85vh;
             }
-
-            .navbar{
-
-            }
+           
         </style>
     </head>
     <body>
@@ -80,9 +77,7 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-                
-                
-                
+
             </div>
             <div class="col-sm-8 text-left">
                 <div class="col-lg-1"></div>
@@ -128,7 +123,7 @@
                                 <td>
                                     <% if (element.getTasksSet().isEmpty()) { %> 
                                     - No Any Assigned Tasks -
-                                   
+
                                     <% } else { %>
                                     <% for (Task s : element.getTasksSet()) { %>
                         <li><% out.println(s.getDescription());%></li>

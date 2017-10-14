@@ -19,8 +19,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Tasks</title>
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="assets/js/jquery-1.10.2.js"></script>
         <script>
             $(document).ready(function () {
                 $("#updateDiv").hide();
