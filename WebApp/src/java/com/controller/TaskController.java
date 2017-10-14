@@ -9,12 +9,10 @@ import com.dao.RoleDao;
 import com.daoImpl.HibernateUtil;
 import com.daoImpl.TaskDaoImpl;
 import com.entity.Employee;
-import com.entity.Role;
 import com.entity.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.control.Alert;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +23,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 public class TaskController extends HttpServlet {
 
@@ -33,6 +31,13 @@ public class TaskController extends HttpServlet {
     TaskDaoImpl taskDaoImpl = new TaskDaoImpl();
     RoleDao rdao;
 
+    /**
+     * Process HTTP GET requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,6 +51,13 @@ public class TaskController extends HttpServlet {
 
     }
 
+    /**
+     * Process HTTP POST requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -64,11 +76,12 @@ public class TaskController extends HttpServlet {
         }
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>  
 
+    /**
+     * This method is used to retrieve the all
+     * the details of the tasks.
+     * @return List All the details of the tasks
+     */
     public static List<Task> showAllTasks() {
         List<Task> taskList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

@@ -22,7 +22,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 public class RoleController extends HttpServlet {
 
@@ -30,6 +30,13 @@ public class RoleController extends HttpServlet {
     RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
     RoleDao rdao;
 
+    /**
+     * Process HTTP GET requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,6 +50,13 @@ public class RoleController extends HttpServlet {
 
     }
 
+    /**
+     * Process HTTP POST requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,11 +72,12 @@ public class RoleController extends HttpServlet {
         }
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>  
 
+    /**
+     * This method is used to retrieve the all 
+     * the details of the roles.
+     * @return List All the details of roles
+     */
     public static List<Role> showAllRoles() {
         List<Role> roleList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

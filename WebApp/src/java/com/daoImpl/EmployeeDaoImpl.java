@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 public class EmployeeDaoImpl implements EmployeeDao {
 

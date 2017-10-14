@@ -15,7 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 @Entity
 @Table(name = "ROLE")
@@ -23,6 +23,10 @@ public class Role implements Serializable{
     int id;
     String title;
  
+    /**
+     * Getter of role id.
+     * @return int Roleid
+     */
     @Id
     @GenericGenerator(name="kaugen" , strategy="increment")
     @GeneratedValue(generator="kaugen")
@@ -31,15 +35,27 @@ public class Role implements Serializable{
         return id;
     }
 
+    /**
+     * Setter of the role id.
+     * @param id Id of the role
+     */
     public void setId(int id) {
         this.id = id;
     }
     
+    /**
+     * Getter of the role title.
+     * @return String Title of the role
+     */
     @Column(name = "TITLE")
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Setter of the role title.
+     * @param title Title of the role
+     */
     public void setTitle(String title) {
         this.title = title;
     }

@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 public class RoleDaoImpl implements RoleDao{
 

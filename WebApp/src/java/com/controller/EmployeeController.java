@@ -26,7 +26,7 @@ import org.hibernate.Session;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 public class EmployeeController extends HttpServlet {
 
@@ -38,6 +38,13 @@ public class EmployeeController extends HttpServlet {
     RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
     RoleDao rdao;
 
+    /**
+     * Process HTTP Get requests
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,6 +63,13 @@ public class EmployeeController extends HttpServlet {
 
     }
 
+    /**
+     * Process HTTP Post requests
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -76,11 +90,11 @@ public class EmployeeController extends HttpServlet {
         }
     }
 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>  
 
+    /**
+     * This method is used to retrieve all the employee details
+     * @return List Employee details
+     */
     public static List<Employee> showAllEmployees() {
         List<Employee> employeeList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

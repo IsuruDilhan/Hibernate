@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
 @Entity
 @Table(name = "TASK")
@@ -27,6 +27,10 @@ public class Task implements Serializable {
     private Employee employee;
     private String description;
 
+    /**
+     * Getter of task id.
+     * @return int Id of the task
+     */
     @Id
     @GenericGenerator(name="kaugen" , strategy="increment")
     @GeneratedValue(generator="kaugen")
@@ -35,25 +39,45 @@ public class Task implements Serializable {
         return taskID;
     }
 
+    /**
+     * Setter of task id.
+     * @param taskID Id of the task
+     */
     public void setTaskID(int taskID) {
         this.taskID = taskID;
     }
 
+    /**
+     * Getter of assigned employee of the task.
+     * @return Employee Assigned employee
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "EMPLOYEEID", nullable = true)
     public Employee getEmployee() {
         return employee;
     }
 
+    /**
+     * Setter of assigned employee of the task.
+     * @param employee Assigned employee
+     */
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
+    /**
+     * Getter of the task description.
+     * @return String Task description
+     */
     @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Setter of the task description.
+     * @param description Task description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
