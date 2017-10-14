@@ -14,6 +14,7 @@ import com.entity.Task;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -60,9 +61,9 @@ public class TaskController extends HttpServlet{
           if(request.getParameter("updateTask")!=null){
              int id1 = Integer.parseInt(request.getParameter("id"));
              String description = request.getParameter("descriptionupdate");
+             int empid1 = Integer.parseInt(request.getParameter("empid").trim());
              Employee emp = new Employee();
-             emp.setEmployeeID(1);
-             emp.setName("test");
+             emp.setEmployeeID(empid1);
              taskDaoImpl.updateTask(id1, description, emp);
              
              RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");

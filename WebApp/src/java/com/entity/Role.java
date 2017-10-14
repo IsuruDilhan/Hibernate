@@ -18,12 +18,11 @@ import org.hibernate.annotations.GenericGenerator;
  * @author VSARAIS
  */
 @Entity
-@Table(name = "ROLES")
+@Table(name = "ROLE")
 public class Role implements Serializable{
     int id;
-    
     String title;
-    
+ 
     @Id
     @GenericGenerator(name="kaugen" , strategy="increment")
     @GeneratedValue(generator="kaugen")
@@ -44,5 +43,5 @@ public class Role implements Serializable{
     public void setTitle(String title) {
         this.title = title;
     }
-    
+   
 }

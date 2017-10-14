@@ -49,12 +49,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="#">HR</a>
+                    <a class="navbar-brand" href="/WebApp">HR</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/WebApp">Home</a></li>
-                        <li><a href="#">Employees</a></li>
+                        <li><a href="ShowAllEmployees.jsp">Employees</a></li>
                         <li><a href="ShowAllTasks.jsp">Tasks</a></li>
                         <li><a href="ShowAllRoles.jsp">Roles</a></li>
                     </ul>
@@ -67,9 +67,9 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
+                
+                
+                
             </div>
             <div class="col-sm-8 text-left"> 
                 <div id="add" class="col-lg-6">

@@ -5,16 +5,17 @@
  */
 package com.dao;
 
+import com.entity.Employee;
 import com.entity.Role;
+import com.entity.Task;
 import java.util.List;
 
 /**
  *
  * @author VSARAIS
  */
-public interface RoleDao {
-   public void saveRole (Role role);
-   public List<Role> showAllRoles();
-   public void updateRole (int id, String title);
-   public Role getRolebyID(int id);
+public interface EmployeeDao {
+   public void saveEmployee (Employee employee);
+   public List<Employee> showAllEmployees();
+   public void updateEmployee (int id, String name, Role role, Task task);
 }
