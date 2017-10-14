@@ -28,16 +28,15 @@ import org.hibernate.Session;
  *
  * @author VSARAIS
  */
-public class EmployeeController extends HttpServlet{
+public class EmployeeController extends HttpServlet {
 
     Employee emp = new Employee();
     EmployeeDaoImpl empDaoImpl = new EmployeeDaoImpl();
     EmployeeDao edao;
-    
-     Role role = new Role();
-        RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
-        RoleDao rdao;
-       
+
+    Role role = new Role();
+    RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
+    RoleDao rdao;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,11 +44,11 @@ public class EmployeeController extends HttpServlet{
         if (request.getParameter("addEmployee") != null) {
             String name = request.getParameter("name");
             emp.setName(name);
-            
+
             int roleid1 = Integer.parseInt(request.getParameter("roleid").trim());
             role = roleDaoImpl.getRolebyID(roleid1);
             emp.setRole(role);
-            
+
             empDaoImpl.saveEmployee(emp);
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllEmployees.jsp");
             rd.forward(request, response);
@@ -60,23 +59,16 @@ public class EmployeeController extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("showEmployee") != null) {
-            List<Employee> employeeList = new ArrayList();
-            employeeList = empDaoImpl.showAllEmployees();
-            request.setAttribute("employeeList", employeeList);
-            RequestDispatcher rd = request.getRequestDispatcher("ShowAllEmployees.jsp");
-            rd.forward(request, response);
-        }
 
         if (request.getParameter("updateEmployee") != null) {
             int id1 = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("nameupdate");
             int roleid1 = Integer.parseInt(request.getParameter("roleid").trim());
             role = roleDaoImpl.getRolebyID(roleid1);
-            
+
             Task tk = new Task();
             tk.setTaskID(1);
-            empDaoImpl.updateEmployee(id1, name,role,tk);
+            empDaoImpl.updateEmployee(id1, name, role, tk);
 
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllEmployees.jsp");
             rd.forward(request, response);
@@ -88,7 +80,7 @@ public class EmployeeController extends HttpServlet{
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>  
-    
+
     public static List<Employee> showAllEmployees() {
         List<Employee> employeeList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

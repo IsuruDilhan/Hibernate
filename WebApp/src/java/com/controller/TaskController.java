@@ -27,57 +27,48 @@ import org.hibernate.Session;
  *
  * @author VSARAIS
  */
-public class TaskController extends HttpServlet{
-   Task task = new Task();
-        TaskDaoImpl taskDaoImpl = new TaskDaoImpl();
-        RoleDao rdao;
-       
-  
+public class TaskController extends HttpServlet {
+
+    Task task = new Task();
+    TaskDaoImpl taskDaoImpl = new TaskDaoImpl();
+    RoleDao rdao;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("addTask")!=null){
+        if (request.getParameter("addTask") != null) {
             String description = request.getParameter("description");
             task.setDescription(description);
             taskDaoImpl.saveTask(task);
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
             rd.forward(request, response);
         }
-          
-        
+
     }
- 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         if(request.getParameter("showTask")!=null){
-            List<Task> taskList = new ArrayList();
-            taskList = taskDaoImpl.showAllTasks();
-            request.setAttribute("taskList", taskList);
+
+        if (request.getParameter("updateTask") != null) {
+            int id1 = Integer.parseInt(request.getParameter("id"));
+            String description = request.getParameter("descriptionupdate");
+            int empid1 = Integer.parseInt(request.getParameter("empid").trim());
+            Employee emp = new Employee();
+            emp.setEmployeeID(empid1);
+            taskDaoImpl.updateTask(id1, description, emp);
+
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
             rd.forward(request, response);
+
         }
-         
-          if(request.getParameter("updateTask")!=null){
-             int id1 = Integer.parseInt(request.getParameter("id"));
-             String description = request.getParameter("descriptionupdate");
-             int empid1 = Integer.parseInt(request.getParameter("empid").trim());
-             Employee emp = new Employee();
-             emp.setEmployeeID(empid1);
-             taskDaoImpl.updateTask(id1, description, emp);
-             
-             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
-             rd.forward(request, response);
-             
-         }
     }
- 
- 
+
     @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>  
-    
+
     public static List<Task> showAllTasks() {
         List<Task> taskList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();
