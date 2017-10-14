@@ -9,7 +9,6 @@ import com.dao.RoleDao;
 import com.daoImpl.HibernateUtil;
 import com.daoImpl.TaskDaoImpl;
 import com.entity.Employee;
-import com.entity.Role;
 import com.entity.Task;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,59 +23,65 @@ import org.hibernate.Session;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
-public class TaskController extends HttpServlet{
-   Task task = new Task();
-        TaskDaoImpl taskDaoImpl = new TaskDaoImpl();
-        RoleDao rdao;
-       
-  
+public class TaskController extends HttpServlet {
+
+    Task task = new Task();
+    TaskDaoImpl taskDaoImpl = new TaskDaoImpl();
+    RoleDao rdao;
+
+    /**
+     * Process HTTP GET requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("addTask")!=null){
+        if (request.getParameter("addTask") != null) {
             String description = request.getParameter("description");
             task.setDescription(description);
             taskDaoImpl.saveTask(task);
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
             rd.forward(request, response);
         }
-          
-        
+
     }
- 
+
+    /**
+     * Process HTTP POST requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         if(request.getParameter("showTask")!=null){
-            List<Task> taskList = new ArrayList();
-            taskList = taskDaoImpl.showAllTasks();
-            request.setAttribute("taskList", taskList);
+
+        if (request.getParameter("updateTask") != null) {
+            int id1 = Integer.parseInt(request.getParameter("id"));
+            String description = request.getParameter("descriptionupdate");
+            int empid1 = Integer.parseInt(request.getParameter("empid").trim());
+            Employee emp = new Employee();
+            emp.setEmployeeID(empid1);
+            taskDaoImpl.updateTask(id1, description, emp);
+
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
             rd.forward(request, response);
+
         }
-         
-          if(request.getParameter("updateTask")!=null){
-             int id1 = Integer.parseInt(request.getParameter("id"));
-             String description = request.getParameter("descriptionupdate");
-             Employee emp = new Employee();
-             emp.setEmployeeID(1);
-             emp.setName("test");
-             taskDaoImpl.updateTask(id1, description, emp);
-             
-             RequestDispatcher rd = request.getRequestDispatcher("ShowAllTasks.jsp");
-             rd.forward(request, response);
-             
-         }
     }
- 
- 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>  
-    
+
+
+    /**
+     * This method is used to retrieve the all
+     * the details of the tasks.
+     * @return List All the details of the tasks
+     */
     public static List<Task> showAllTasks() {
         List<Task> taskList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

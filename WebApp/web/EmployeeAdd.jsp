@@ -1,10 +1,14 @@
 <%-- 
-    Document   : RoleAdd
+    Document   : EmployeeAdd
     Created on : Oct 12, 2017, 7:47:11 AM
     Author     : Sarathchandra
 --%>
 
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.entity.Role"%>
+<%@page import="com.controller.RoleController"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +34,7 @@
             function required()
             {
                 alert('her')
-                if ($("#title").val().trim()= '')
+                if ($("#title").val().trim() = '')
                 {
                     alert("Title name should be provided");
                     return false;
@@ -67,23 +71,40 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-        
+
             </div>
-            <div class="col-sm-8 text-left"> 
+            <div class="col-sm-8 text-left">
                 <div class="col-sm-2"></div>
                 <div id="add" class="col-lg-6">
-                    <h4> Add Role </h4>
-                    <form action="RoleController" method="GET">
+                    <h4> Add Employee </h4> <br>
+                    <form action="EmployeeController" method="GET">
                         <table class="table">
                             <tr>
-                                <td> Role Name</td>
-                                <td><input type="text" name="title" id="title" class="form-control form-group"></td>
+                                <td> Employee Name</td>
+                                <td><input type="text" name="name" id="name" class="form-control form-group"></td>
                             </tr>
                             <tr>
-                                <td><input type="submit" name="addRole" value="Add" class="btn btn-primary" onsubmit="required()"></td>
+                                <td> Employee Role</td>
                                 <td>
-                                    <a class="btn btn-info" href="ShowAllRoles.jsp"> 
-                                        Show All Roles
+                                    <select name="roleid" class="form-control form-group">
+                                        <%
+                                            List role = RoleController.showAllRoles();
+                                            for (Iterator iter = role.iterator(); iter.hasNext();) {
+
+                                                Role element = (Role) iter.next();
+                                        %>
+
+                                        <option value="<% out.println(element.getId()); %>"> <% out.println(element.getTitle()); %> </option>
+
+                                        <% }%>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" name="addEmployee" value="Add" class="btn btn-primary" onsubmit="required()"></td>
+                                <td>
+                                    <a class="btn btn-info" href="ShowAllEmployees.jsp"> 
+                                        Show All Employees
                                     </a>
                                 </td>
                             </tr>

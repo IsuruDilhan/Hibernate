@@ -22,56 +22,62 @@ import org.hibernate.Session;
 
 /**
  *
- * @author VSARAIS
+ * @author Sarathchandra
  */
-public class RoleController extends HttpServlet{
-   Role role = new Role();
-        RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
-        RoleDao rdao;
-       
-  
+public class RoleController extends HttpServlet {
+
+    Role role = new Role();
+    RoleDaoImpl roleDaoImpl = new RoleDaoImpl();
+    RoleDao rdao;
+
+    /**
+     * Process HTTP GET requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("addRole")!=null){
+        if (request.getParameter("addRole") != null) {
             String title = request.getParameter("title");
             role.setTitle(title);
             roleDaoImpl.saveRole(role);
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllRoles.jsp");
             rd.forward(request, response);
         }
-          
-        
+
     }
- 
+
+    /**
+     * Process HTTP POST requests.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         if(request.getParameter("showRole")!=null){
-            List<Role> roleList = new ArrayList();
-            roleList = roleDaoImpl.showAllRoles();
-            request.setAttribute("roleList", roleList);
+
+        if (request.getParameter("updateRole") != null) {
+            int id1 = Integer.parseInt(request.getParameter("id"));
+            String title = request.getParameter("titleupdate");
+            roleDaoImpl.updateRole(id1, title);
+
             RequestDispatcher rd = request.getRequestDispatcher("ShowAllRoles.jsp");
             rd.forward(request, response);
+
         }
-         
-          if(request.getParameter("updateRole")!=null){
-             int id1 = Integer.parseInt(request.getParameter("id"));
-             String title = request.getParameter("titleupdate");
-             roleDaoImpl.updateRole(id1, title);
-             
-             RequestDispatcher rd = request.getRequestDispatcher("ShowAllRoles.jsp");
-             rd.forward(request, response);
-             
-         }
     }
- 
- 
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>  
-    
+
+
+    /**
+     * This method is used to retrieve the all 
+     * the details of the roles.
+     * @return List All the details of roles
+     */
     public static List<Role> showAllRoles() {
         List<Role> roleList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();

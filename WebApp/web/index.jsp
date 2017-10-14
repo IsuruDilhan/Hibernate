@@ -16,9 +16,18 @@
             .containers{
                 height: 85vh;
             }
-            
-            .navbar{
-                
+
+            .panel:hover {
+                box-shadow: 0px 0px 15px #000000;
+                z-index: 2;
+                -webkit-transition: all 200ms ease-in;
+                -webkit-transform: scale(1.1);
+                -ms-transition: all 200ms ease-in;
+                -ms-transform: scale(1.1);   
+                -moz-transition: all 200ms ease-in;
+                -moz-transform: scale(1.1);
+                transition: all 200ms ease-in;
+                transform: scale(1.1);
             }
         </style>
     </h:head>
@@ -31,12 +40,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="#">HR</a>
+                    <a class="navbar-brand" href="/WebApp">HR</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/WebApp">Home</a></li>
-                        <li><a href="#">Employees</a></li>
+                        <li><a href="ShowAllEmployees.jsp">Employees</a></li>
                         <li><a href="ShowAllTasks.jsp">Tasks</a></li>
                         <li><a href="ShowAllRoles.jsp">Roles</a></li>
                     </ul>
@@ -48,22 +57,51 @@
         </nav>
 
         <div class="containers">
-            <div class="col-sm-2 sidenav">
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
+            <div class="col-sm-2 ">
+
             </div>
             <div class="col-sm-8 text-left"> 
-                <h1>Welcome</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <hr>
-                    <h3>Test</h3>
-                    <p>Lorem ipsum...</p>
-            </div>
-            <div class="col-sm-2">
-                
-            </div>
-        </div>
-    </h:body>
-</html>
+                <div class="row text-center h3">HR Mangement System</div><br><br><br>
+                            <div class="row">
+                                <a href="ShowAllEmployees.jsp">
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading text-center">Employees</div>
+                                            <div class="panel-body">
+                                                <img src="assets/img/team.png">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="ShowAllTasks.jsp">
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading text-center">Tasks</div>
+                                            <div class="panel-body">
+                                                <img src="assets/img/tasks.png">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="ShowAllRoles.jsp">
+                                    <div class="col-lg-4">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading text-center">Roles</div>
+                                            <div class="panel-body">
+                                                <img src="assets/img/roles.png">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            </div>
+                            <div class="col-sm-2">
+
+                            </div>
+                            </div>
+                            </h:body>
+                            </html>
 

@@ -16,6 +16,14 @@
         <servlet-name>TaskController</servlet-name>
         <url-pattern>/TaskController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>EmployeeController</servlet-name>
+        <servlet-class>com.controller.EmployeeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeController</servlet-name>
+        <url-pattern>/EmployeeController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

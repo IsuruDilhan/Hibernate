@@ -4,20 +4,21 @@
     Author     : Sarathchandra
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.entity.Task"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.entity.Role"%>
 <%@page import="com.entity.Employee"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="com.controller.TaskController"%>
 <%@page import="com.controller.EmployeeController"%>
+<%@page import="com.controller.RoleController"%>
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Tasks</title>
+        <title>Employees</title>
         <link href="assets/css/font-awesome.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -26,13 +27,13 @@
                 $("#updateDiv").hide();
             });
 
-            function showDiv(id, description) {
+            function showDiv(id, name) {
                 $("#updateDiv").hide();
                 $("#updateDiv").fadeIn("slow", function () {
                 });
 
                 $("#id").val(id);
-                $("#descriptionupdate").val(description);
+                $("#nameupdate").val(name);
             }
 
         </script>
@@ -86,58 +87,70 @@
             <div class="col-sm-8 text-left">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <h4>All Tasks</h4> <br> 
-                    <a class="btn btn-sm btn-info" href="TaskAdd.jsp"> 
-                        <i class="fa fa-plus" aria-hidden="true"> Add New Task</i>
+                    <h4>All Employees</h4> <br> 
+                    <a class="btn btn-sm btn-info" href="EmployeeAdd.jsp"> 
+                        <i class="fa fa-plus" aria-hidden="true"> Add New Employee</i>
                     </a><br><br>
 
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Task Description</th>
-                                <th class="text-center">Employee</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Tasks</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <%
-                                List tasks = TaskController.showAllTasks();
-                                for (Iterator iter = tasks.iterator(); iter.hasNext();) {
+                                List emp = EmployeeController.showAllEmployees();
+                                for (Iterator iter = emp.iterator(); iter.hasNext();) {
 
-                                    Task element = (Task) iter.next();
+                                    Employee element = (Employee) iter.next();
                             %>
 
                             <tr>
                                 <td>
-                                    <% out.println(element.getTaskID()); %>
+                                    <% out.println(element.getEmployeeID()); %>
                                 </td>
                                 <td>
-                                    <% out.println(element.getDescription()); %>
+                                    <% out.println(element.getName()); %>
                                 </td>
-                                <td class="text-center">
-                                    <% if (element.getEmployee() == null) { %> 
-                                    - Task is Unassigned -
-
+                                <td>
+                                    <% if (element.getRole() == null) { %> 
+                                    <% out.println(element.getRole()); %>
                                     <% } else { %>
-                                    <% out.println(element.getEmployee().getName()); %>
+                                    <% out.println(element.getRole().getTitle()); %>
                                     <% } %>
-                                </td>
-                                <td class="text-center">
-                                    <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getTaskID()); %>, '<% out.print(element.getDescription()); %>')">
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
-                                    </button>
-                                </td>
-                            </tr>
 
-                            <% }%>
+                                </td>
+                                <td>
+                                    <% if (element.getTasksSet().isEmpty()) { %> 
+                                    - No Any Assigned Tasks -
+                                   
+                                    <% } else { %>
+                                    <% for (Task s : element.getTasksSet()) { %>
+                        <li><% out.println(s.getDescription());%></li>
+                            <%}%>
+                            <% } %>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getEmployeeID()); %>,
+                                            '<% out.print(element.getName()); %>')">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
+                            </button>
+                        </td>
+                        </tr>
+
+                        <% }%>
 
                         </tbody>
                     </table>
 
                     <div class="row col-lg-6" id="updateDiv">
                         <h4>Edit Details</h4>
-                        <form action="TaskController" method="POST">
+                        <form action="EmployeeController" method="POST">
 
                             <table class="table col-lg-6">
                                 <tbody>
@@ -147,23 +160,22 @@
                                     </tr>
 
                                     <tr>
-                                        <td><label>Update Description</label></td>
-                                        <td><input id="descriptionupdate" type="text" name="descriptionupdate" 
-                                                   class="form-control form-group"></td>
+                                        <td><label>Update Name</label></td>
+                                        <td><input id="nameupdate" type="text" name="nameupdate" class="form-control form-group"></td>
                                     </tr>
 
                                     <tr>
-                                        <td><label>Assign Employee</label></td>
+                                        <td><label>Update Role</label></td>
                                         <td>
-                                            <select name="empid" class="form-control form-group">
+                                            <select name="roleid" class="form-control form-group">
                                                 <%
-                                                    List emp = EmployeeController.showAllEmployees();
-                                                    for (Iterator iter = emp.iterator(); iter.hasNext();) {
+                                                    List role = RoleController.showAllRoles();
+                                                    for (Iterator iter = role.iterator(); iter.hasNext();) {
 
-                                                        Employee element = (Employee) iter.next();
+                                                        Role element = (Role) iter.next();
                                                 %>
 
-                                                <option value="<% out.println(element.getEmployeeID()); %>"><% out.println(element.getName()); %></option>
+                                                <option value="<% out.println(element.getId()); %>"> <% out.println(element.getTitle()); %> </option>
 
                                                 <% }%>
                                             </select>
@@ -172,7 +184,7 @@
                                 </tbody>
                             </table>
 
-                            <button type="submit" id="updateTask" name="updateTask" class="btn btn-sm btn-warning"> Update</button> <br> <br>
+                            <button type="submit" id="updateEmployee" name="updateEmployee" class="btn btn-sm btn-warning"> Update</button> <br> <br>
 
                         </form>
                     </div>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : ShowAll
     Created on : Oct 12, 2017, 7:48:48 AM
-    Author     : VSARAIS
+    Author     : Sarathchandra
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -59,12 +59,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="#">HR</a>
+                    <a class="navbar-brand" href="/WebApp">HR</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/WebApp">Home</a></li>
-                        <li><a href="#">Employees</a></li>
+                        <li><a href="ShowAllEmployees.jsp">Employees</a></li>
                         <li><a href="ShowAllTasks.jsp">Tasks</a></li>
                         <li><a href="ShowAllRoles.jsp">Roles</a></li>
                     </ul>
@@ -77,9 +77,9 @@
 
         <div class="containers">
             <div class="col-sm-2 sidenav">
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
+                
+                
+                
             </div>
             <div class="col-sm-8 text-left">
                 <div class="col-lg-1"></div>
@@ -93,8 +93,8 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Title</th>
-                            <th>Action</th>
+                            <th class="text-center">Title</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,10 +109,10 @@
                             <td>
                                 <% out.println(element.getId()); %>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <% out.println(element.getTitle()); %>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <button class="btn btn-sm btn-success" title="Edit" onclick="showDiv(<% out.println(element.getId()); %>, '<% out.print(element.getTitle()); %>')">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"> Edit</i>
                                 </button>
@@ -132,12 +132,12 @@
                             <tbody>
                             <tr>
                             <td><label>ID</label></td>
-                            <td><input name="id" id="id" type="text" readonly=""></td>
+                            <td><input name="id" id="id" type="text" readonly="" class="form-control form-group"></td>
                             </tr>
                             
                             <tr>
                             <td><label>Update Title</label></td>
-                            <td><input id="titleupdate" type="text" name="titleupdate"></td>
+                            <td><input id="titleupdate" type="text" name="titleupdate" class="form-control form-group"></td>
                             </tr>
                             </tbody>
                         </table>

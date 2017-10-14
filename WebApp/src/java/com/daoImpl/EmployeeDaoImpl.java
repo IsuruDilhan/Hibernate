@@ -5,10 +5,14 @@
  */
 package com.daoImpl;
 
-import com.dao.RoleDao;
+import com.dao.EmployeeDao;
+import com.entity.Employee;
 import com.entity.Role;
+import com.entity.Task;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,47 +21,40 @@ import org.hibernate.Transaction;
  *
  * @author Sarathchandra
  */
-public class RoleDaoImpl implements RoleDao{
+public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
-    public void saveRole(Role role) {
+    public void saveEmployee(Employee employee) {
         System.err.println("SAVE");
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.save(role);
+        session.save(employee);
         transaction.commit();
         session.close();
     }
 
     @Override
-    public List<Role> showAllRoles() {
-        List<Role> roleList = new ArrayList();
+    public List<Employee> showAllEmployees() {
+        List<Employee> employeeList = new ArrayList();
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Role");
-        roleList = query.list();
-        return roleList;
+        Query query = session.createQuery("from Employee");
+        employeeList = query.list();
+        return employeeList;
     }
 
     @Override
-    public void updateRole(int id, String title) {
+    public void updateEmployee(int id, String name, Role role, Task task) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        Role roledetails = (Role)session.load(Role.class, id);
-        roledetails.setTitle(title);
-        session.update(roledetails);
+        Employee employeedetails = (Employee) session.load(Employee.class, id);
+        employeedetails.setName(name);
+        employeedetails.setRole(role);
+        Set<Task> tk = new HashSet<Task>();
+        tk.add(task);
+        employeedetails.setTasksSet(tk);
+        session.update(employeedetails);
         transaction.commit();
         session.close();
     }
 
-    @Override
-    public Role getRolebyID(int id) {
-        
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Query query = session.createQuery("from Role where id= :id");
-        query.setLong("id", id);
-        Role role = (Role) query.uniqueResult();
-        return role;
-    }
-    
-    
 }
