@@ -81,14 +81,14 @@
                         <table class="table">
                             <tr>
                                 <td> Employee Name</td>
-                                <td><input type="text" name="name" id="name" class="form-control form-group"></td>
+                                <td><input required type="text" name="name" id="name" class="form-control form-group"></td>
                             </tr>
                             <tr>
                                 <td> Employee Role</td>
                                 <td>
                                     <select name="roleid" class="form-control form-group">
                                         <%
-                                            List role = RoleController.showAllRoles();
+                                            List role = RoleController.showUnassignedRoles();
                                             for (Iterator iter = role.iterator(); iter.hasNext();) {
 
                                                 Role element = (Role) iter.next();

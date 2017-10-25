@@ -77,7 +77,7 @@
                         <table class="table">
                             <tr>
                                 <td> Role Name</td>
-                                <td><input type="text" name="title" id="title" class="form-control form-group"></td>
+                                <td><input required type="text" name="title" id="title" class="form-control form-group"></td>
                             </tr>
                             <tr>
                                 <td><input type="submit" name="addRole" value="Add" class="btn btn-primary" onsubmit="required()"></td>

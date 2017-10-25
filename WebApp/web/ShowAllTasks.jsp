@@ -148,7 +148,7 @@
 
                                     <tr>
                                         <td><label>Update Description</label></td>
-                                        <td><input id="descriptionupdate" type="text" name="descriptionupdate" 
+                                        <td><input required id="descriptionupdate" type="text" name="descriptionupdate" 
                                                    class="form-control form-group"></td>
                                     </tr>
 

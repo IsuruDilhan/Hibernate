@@ -79,7 +79,7 @@
                         <table class="table">
                             <tr>
                                 <td> Task Description</td>
-                                <td><input type="text" name="description" id="description" class="form-control form-group"></td>
+                                <td><input required type="text" name="description" id="description" class="form-control form-group"></td>
                             </tr>
                             <tr>
                                 <td><input type="submit" name="addTask" value="Add" class="btn btn-primary" onsubmit="required()" ></td>

@@ -85,4 +85,16 @@ public class RoleController extends HttpServlet {
         roleList = query.list();
         return roleList;
     }
+    
+    /**
+     * This method is used to retrieve unassigned roles
+     * @return List All the details of roles
+     */
+    public static List showUnassignedRoles() {
+        List roleList = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        roleList = session.createQuery("select r from Role as r where r.id NOT IN (select e.role from Employee as e)").list();
+        //roleList = query.list();
+        return roleList;
+    }
 }
